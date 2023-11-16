@@ -1,0 +1,83 @@
+{"experiment": {
+    "title": "Test Data",
+    "description": "Test description",
+    "mask_path": "./roi_mask.tif",
+    "thickness_path": "./thickness_mask.tif",
+    "measurements": [
+    {
+        "measurement_mode": "multi-scan",
+        "xi": {
+            "mode": "calculated"
+        },
+        "moire": {
+            "mode": "discrete",
+            "value": [0.4, 0.7, 1, 2],
+            "units": "mm"
+        },
+        "z": {
+            "mode": "range",
+            "value": [30, 600, 20, "linear"],
+            "units": "mm"
+        },
+        "wavelength": {
+            "mode": "fixed",
+            "value": [3],
+            "units": "Ang"
+        }
+    }],
+    "models": [
+        {
+            "roi": [1],
+            "intent": "open"
+        },
+        {
+            "roi": [2, 3],
+            "intent": "sample",
+            "model": {
+                "model_mode": "user-defined",
+                "model_name": "sphere",
+                "model_parts": [
+                    {
+                        "part_name": "sphere",
+                        "parameters": {
+                            "radius": {
+                                "parameter_mode": "user-defined",
+                                "value": [100, 200]
+                            },
+                            "radius_pd": {
+                                "parameter_mode": "user-defined",
+                                "value": [0]
+                            },
+                            "radius_pd_n": {
+                                "parameter_mode": "user-defined",
+                                "value": [35]
+                            },
+                            "radius_pd_nsigma": {
+                                "parameter_mode": "user-defined",
+                                "value": [3]
+                            },
+                            "radius_pd_type": {
+                                "parameter_mode": "user-defined",
+                                "value": ["gaussian"]
+                            },
+                            "scale": {
+                                "parameter_mode": "user-defined",
+                                "value": [0.05]
+                            }
+                        },
+                        "sample_components": {
+                            "sld": {
+                                "component_mode": "component-library",
+                                "value": "polystyrene"
+                            },
+                            "sld_solvent": {
+                                "component_mode": "component-library",
+                                "value": "deuterium_oxide"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}}

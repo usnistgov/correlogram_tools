@@ -1,0 +1,15 @@
+{"common": {
+    "scale": {
+        "value": 1,
+        "min": 0,
+        "max": 1,
+        "units": "None",
+        "spacing": "linear"
+    },
+    "background": {
+        "value": 0,
+        "min": 0,
+        "max": 0,
+        "units": "1/cm"
+    }
+}}

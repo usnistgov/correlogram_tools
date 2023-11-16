@@ -1,0 +1,267 @@
+{"experiment": {
+  "title": "Experiment title that will be stored in the nexus file meta-data.",
+  "description": "Additional information for the simulation experiment; not transferred to nexus.",
+  "mask_path": "./roi_mask_paper.tif",
+  "thickness_path": "./thickness_mask_paper.tif",
+  "measurements": [
+    {
+      "measurement_mode": "multi-scan",
+      "xi": {
+        "mode": "calculated"
+      },
+      "moire": {
+        "mode": "discrete",
+        "value": [0.2, 0.4, 1.0],
+        "units": "mm"
+      },
+      "z": {
+        "mode": "discrete",
+        "value": [50, 125, 250],
+        "units": "mm"
+      },
+      "wavelength": {
+        "mode": "fixed",
+        "value": [4],
+        "units": "Ang"
+      }
+    }
+  ],
+  "instrument": {
+    "interferometer_length": 6,
+    "x_pixel_pitch": 50,
+    "y_pixel_pitch": 50,
+    "slit_aperture_x": 10,
+    "slit_aperture_y": 10,
+    "n_phase_steps": 10,
+    "n_phase_step_periods": 2
+  },
+  "sim_noise": {
+    "moire_mean": 10000,
+    "moire_vis": 0.3,
+    "noise_mean": 0,
+    "noise_var": 5.0E-7
+  },
+  "models": [
+    {
+      "roi": [6],
+      "intent": "open"
+    },
+    {
+      "roi": [1, 2, 3],
+      "intent": "sample",
+      "model": {
+        "model_mode": "user-defined",
+        "model_name": "sphere@hardsphere",
+        "model_parts": [
+          {
+            "part_name": "sphere",
+            "parameters": {
+              "radius": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  250, 375, 500
+                ]
+              },
+              "radius_pd": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  0.1
+                ]
+              },
+              "scale": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  1
+                ]
+              }
+            },
+            "sample_components": {
+              "sld": {
+                "component_mode": "molecular-formula",
+                "value": "C8H8",
+                "density": 1.05
+              },
+              "sld_solvent": {
+                "component_mode": "molecular-formula",
+                "value": "D2O",
+                "density": 1.1
+              }
+            }
+          },
+          {
+            "part_name": "hardsphere",
+            "parameters": {
+              "volfraction": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  0.1
+                ]
+              },
+              "radius_effective": {
+                "parameter_mode": "user-defined",
+                "value": [250, 375, 500]
+              }
+            },
+            "sample_components": {
+              "sld": {
+                "component_mode": "molecular-formula",
+                "value": "C8H8",
+                "density": 1.05
+              },
+              "sld_solvent": {
+                "component_mode": "molecular-formula",
+                "value": "D2O",
+                "density": 1.1
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "roi": [4],
+      "intent": "sample",
+      "model": {
+        "model_mode": "user-defined",
+        "model_name": "sphere@hardsphere",
+        "model_parts": [
+          {
+            "part_name": "sphere",
+            "parameters": {
+              "radius": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  500
+                ]
+              },
+              "radius_pd": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  0.1
+                ]
+              },
+              "scale": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  1
+                ]
+              }
+            },
+            "sample_components": {
+              "sld": {
+                "component_mode": "molecular-formula",
+                "value": "C8H8",
+                "density": 1.05
+              },
+              "sld_solvent": {
+                "component_mode": "molecular-formula",
+                "value": "(D2O)11(H2O)3",
+                "density": 1.079
+              }
+            }
+          },
+          {
+            "part_name": "hardsphere",
+            "parameters": {
+              "volfraction": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  0.1
+                ]
+              },
+              "radius_effective": {
+                "parameter_mode": "user-defined",
+                "value": [500]
+              }
+            },
+            "sample_components": {
+              "sld": {
+                "component_mode": "molecular-formula",
+                "value": "C8H8",
+                "density": 1.05
+              },
+              "sld_solvent": {
+                "component_mode": "molecular-formula",
+                "value": "(D2O)11(H2O)3",
+                "density": 1.079
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "roi": [5],
+      "intent": "sample",
+      "model": {
+        "model_mode": "user-defined",
+        "model_name": "sphere@hardsphere",
+        "model_parts": [
+          {
+            "part_name": "sphere",
+            "parameters": {
+              "radius": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  500
+                ]
+              },
+              "radius_pd": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  0.1
+                ]
+              },
+              "scale": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  1
+                ]
+              }
+            },
+            "sample_components": {
+              "sld": {
+                "component_mode": "molecular-formula",
+                "value": "C8H8",
+                "density": 1.05
+              },
+              "sld_solvent": {
+                "component_mode": "molecular-formula",
+                "value": "(D2O)9(H2O)5",
+                "density": 1.065
+              }
+            }
+          },
+          {
+            "part_name": "hardsphere",
+            "parameters": {
+              "volfraction": {
+                "parameter_mode": "user-defined",
+                "value": [
+                  0.1
+                ]
+              },
+              "radius_effective": {
+                "parameter_mode": "user-defined",
+                "value": [500]
+              }
+            },
+            "sample_components": {
+              "sld": {
+                "component_mode": "molecular-formula",
+                "value": "C8H8",
+                "density": 1.05
+              },
+              "sld_solvent": {
+                "component_mode": "molecular-formula",
+                "value": "(D2O)9(H2O)5",
+                "density": 1.065
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}}
+

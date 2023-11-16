@@ -1,0 +1,51 @@
+{"hayter_msa": {
+    "charge": {
+        "max": 200.0,
+        "min": 1e-06,
+        "units": "e",
+        "value": 19.0
+    },
+    "concentration_salt": {
+        "max": 50000,
+        "min": 0.0,
+        "units": "M",
+        "value": 0.0
+    },
+    "dielectconst": {
+        "max": Infinity,
+        "min": -Infinity,
+        "units": "None",
+        "value": 71.08
+    },
+    "radius_effective": {
+        "max": 50000,
+        "min": 0.0,
+        "units": "Ang",
+        "value": 20.75
+    },
+    "radius_effective_pd": {
+        "value": 0.0
+    },
+    "radius_effective_pd_n": {
+        "max": 1000,
+        "min": 0,
+        "value": 35.0
+    },
+    "radius_effective_pd_nsigma": {
+        "max": 10,
+        "min": 0,
+        "value": 3.0
+    },
+    "temperature": {
+        "max": 450.0,
+        "min": 0.0,
+        "units": "K",
+        "value": 318.16
+    },
+    "volfraction": {
+        "max": 0.74,
+        "min": 0.0,
+        "units": "None",
+        "value": 0.0192
+    }
+}}

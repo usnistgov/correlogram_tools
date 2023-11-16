@@ -1,0 +1,64 @@
+{"core_shell_sphere": {
+    "scale": {
+        "value": 1
+    },
+    "radius": {
+        "max": 50000,
+        "min": 5,
+        "units": "Ang",
+        "value": 60.0
+    },
+    "radius_pd": {
+        "value": 0.0
+    },
+    "radius_pd_n": {
+        "max": 1000,
+        "min": 0,
+        "value": 35.0
+    },
+    "radius_pd_nsigma": {
+        "max": 10,
+        "min": 0,
+        "value": 3.0
+    },
+    "sld_shell": {
+        "value": 1,
+        "min": -1,
+        "max": 7,
+        "units": "1e-6/Ang^2",
+        "spacing": "linear"
+    },
+    "sld_core": {
+        "value": 4,
+        "min": -1,
+        "max": 7,
+        "units": "1e-6/Ang^2",
+        "spacing": "linear"
+    },
+    "sld_solvent": {
+        "value": 6,
+        "min": -1,
+        "max": 7,
+        "units": "1e-6/Ang^2",
+        "spacing": "linear"
+    },
+    "thickness": {
+        "max": 50000,
+        "min": 5,
+        "units": "Ang",
+        "value": 10.0
+    },
+    "thickness_pd": {
+        "value": 0.0
+    },
+    "thickness_pd_n": {
+        "max": 1000,
+        "min": 0,
+        "value": 35.0
+    },
+    "thickness_pd_nsigma": {
+        "max": 10,
+        "min": 0,
+        "value": 3.0
+    }
+}}

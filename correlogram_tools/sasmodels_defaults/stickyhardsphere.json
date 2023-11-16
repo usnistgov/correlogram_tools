@@ -1,0 +1,39 @@
+{"stickyhardsphere": {
+    "perturb": {
+        "max": 0.1,
+        "min": 0.01,
+        "units": "None",
+        "value": 0.05
+    },
+    "radius_effective": {
+        "max": 50000,
+        "min": 0.0,
+        "units": "Ang",
+        "value": 50.0
+    },
+    "radius_effective_pd": {
+        "value": 0.0
+    },
+    "radius_effective_pd_n": {
+        "max": 1000,
+        "min": 0,
+        "value": 35.0
+    },
+    "radius_effective_pd_nsigma": {
+        "max": 10,
+        "min": 0,
+        "value": 3.0
+    },
+    "stickiness": {
+        "max": 50000,
+        "min": -50000,
+        "units": "None",
+        "value": 0.2
+    },
+    "volfraction": {
+        "max": 0.74,
+        "min": 0.0,
+        "units": "None",
+        "value": 0.2
+    }
+}}

@@ -1,0 +1,125 @@
+{"core_shell_cylinder": {
+    "scale": {
+        "value": 1
+    },
+    "length": {
+        "max": 50000,
+        "min": 5,
+        "units": "Ang",
+        "value": 400
+    },
+    "length_pd": {
+        "value": 0.0
+    },
+    "length_pd_n": {
+        "max": 1000,
+        "min": 0,
+        "value": 35.0
+    },
+    "length_pd_nsigma": {
+        "max": 10,
+        "min": 0,
+        "value": 3.0
+    },
+    "phi": {
+        "max": 360.0,
+        "min": -360.0,
+        "units": "degrees",
+        "value": 60
+    },
+    "phi_pd": {
+        "max": 360.0,
+        "min": -360.0,
+        "value": 0.0
+    },
+    "phi_pd_n": {
+        "max": 1000,
+        "min": 0,
+        "value": 35.0
+    },
+    "phi_pd_nsigma": {
+        "max": 10,
+        "min": 0,
+        "value": 3.0
+    },
+    "radius": {
+        "max": 50000,
+        "min": 5,
+        "units": "Ang",
+        "value": 20
+    },
+    "radius_pd": {
+        "value": 0.0
+    },
+    "radius_pd_n": {
+        "max": 1000,
+        "min": 0,
+        "value": 35.0
+    },
+    "radius_pd_nsigma": {
+        "max": 10,
+        "min": 0,
+        "value": 3.0
+    },
+    "sld_core": {
+        "value": 1,
+        "min": -1,
+        "max": 7,
+        "units": "1e-6/Ang^2",
+        "spacing": "linear"
+    },
+    "sld_shell": {
+        "value": 4,
+        "min": -1,
+        "max": 7,
+        "units": "1e-6/Ang^2",
+        "spacing": "linear"
+    },
+    "sld_solvent": {
+        "value": 6,
+        "min": -1,
+        "max": 7,
+        "units": "1e-6/Ang^2",
+        "spacing": "linear"
+    },
+    "theta": {
+        "max": 360.0,
+        "min": -360.0,
+        "units": "degrees",
+        "value": 60
+    },
+    "theta_pd": {
+        "max": 360.0,
+        "min": -360.0,
+        "value": 0.0
+    },
+    "theta_pd_n": {
+        "max": 1000,
+        "min": 0,
+        "value": 35.0
+    },
+    "theta_pd_nsigma": {
+        "max": 10,
+        "min": 0,
+        "value": 3.0
+    },
+    "thickness": {
+        "max": 50000,
+        "min": 5,
+        "units": "Ang",
+        "value": 20
+    },
+    "thickness_pd": {
+        "value": 0.0
+    },
+    "thickness_pd_n": {
+        "max": 1000,
+        "min": 0,
+        "value": 35.0
+    },
+    "thickness_pd_nsigma": {
+        "max": 10,
+        "min": 0,
+        "value": 3.0
+    }
+}}

@@ -1,0 +1,17 @@
+{"hardsphere": {
+    "radius_effective": {
+        "max": 50000,
+        "min": 0.0,
+        "units": "Ang",
+        "value": 50.0
+    },
+    "radius_effective_mode": {
+        "value": 1
+    },
+    "volfraction": {
+        "max": 0.74,
+        "min": 0.0,
+        "units": "None",
+        "value": 0.2
+    }
+}}

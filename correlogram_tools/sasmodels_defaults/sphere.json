@@ -1,0 +1,38 @@
+{"sphere": {
+    "scale": {
+        "value": 1
+    },
+    "sld": {
+        "value": 1,
+        "min": -1,
+        "max": 7,
+        "units": "1e-6/Ang^2",
+        "spacing": "linear"
+    },
+    "sld_solvent": {
+        "value": 6,
+        "min": -1,
+        "max": 7,
+        "units": "1e-6/Ang^2",
+        "spacing": "linear"
+    },
+    "radius": {
+        "value": 50,
+        "min": 5,
+        "max": 50000,
+        "units": "Ang",
+        "spacing": "log"
+    },
+    "radius_pd": {
+        "value": 0
+    },
+    "radius_pd_n": {
+        "value": 35
+    },
+    "radius_pd_nsigma": {
+        "value": 3
+    },
+    "radius_pd_type": {
+        "value": "gaussian"
+    }
+}}

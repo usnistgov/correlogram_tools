@@ -1,0 +1,39 @@
+{"squarewell": {
+    "radius_effective": {
+        "max": 50000,
+        "min": 0.0,
+        "units": "Ang",
+        "value": 50.0
+    },
+    "radius_effective_pd": {
+        "value": 0.0
+    },
+    "radius_effective_pd_n": {
+        "max": 1000,
+        "min": 0,
+        "value": 35.0
+    },
+    "radius_effective_pd_nsigma": {
+        "max": 10,
+        "min": 0,
+        "value": 3.0
+    },
+    "volfraction": {
+        "max": 0.08,
+        "min": 0.0,
+        "units": "None",
+        "value": 0.04
+    },
+    "welldepth": {
+        "max": 1.5,
+        "min": 0.0,
+        "units": "kT",
+        "value": 1.5
+    },
+    "wellwidth": {
+        "max": 50000,
+        "min": 1.0,
+        "units": "diameters",
+        "value": 1.2
+    }
+}}

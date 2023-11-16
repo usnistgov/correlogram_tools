@@ -1,152 +1,102 @@
-# NIST Open-Source Software Repository Template
+# correlogram-tools
 
-Use of GitHub by NIST employees for government work is subject to
-the [Rules of Behavior for GitHub][gh-rob]. This is the
-recommended template for NIST employees, since it contains
-required files with approved text. For details, please consult
-the Office of Data & Informatics' [Quickstart Guide to GitHub at
-NIST][gh-odi].
+This project includes tools to simulate 1D and 2D dark field interferometry data in real space for the 
+[INFER](https://www.nist.gov/programs-projects/interferometry-infer-neutron-interferometric-microscopy-small-forces-and) 
+project and simultaneously compare with small-angle scattering data in Fourier space. It utilizes existing form factor and 
+structure factor models as well as the existing numerical implementation of the Hankel transform in the 
+`sasmodels` package located at https://github.com/SasView/sasmodels in order to:
+- generate simulated dark field and attenuation images that include optical corrections for specific instrumentation
+- interactively and simultaneously simulate SANS and dark field 1D spectra
 
-Please click on the green **Use this template** button above to
-create a new repository under the [usnistgov][gh-nst]
-organization for your own open-source work. Please do not "fork"
-the repository directly, and do not create the templated
-repository under your individual account.
 
-The key files contained in this repository -- which will also
-appear in templated copies -- are listed below, with some things
-to know about each.
+## Theory and Definitions
 
----
+One of the goals of the 
+[INFER](https://www.nist.gov/programs-projects/interferometry-infer-neutron-interferometric-microscopy-small-forces-and) 
+project is to develop a grating-based far field neutron interferometer to collect spatially-resolved structural 
+information at the same length scales as small-angle neutron scattering (SANS) from 1 nm to 10 $`\mu`$m. A simplified schematic diagram of 
+a 2-grating far field interferometer is shown in the image below. The neutron source starts at the source slit location 
+and passes through two phase gratings with the same period, $`P_{G1}=P_{G2}`$ before reaching the detector position. The 
+gratings result in a Moire pattern across the detector with a period of $`P_D`$ which can be determined by the phase 
+grating period, the source-to-detector distance, $`L`$, and the distance between phase gratings, $`D`$. The instrument 
+probes structural features within the sample at a length scale of $`\xi`$, which is defined as the autocorrelation 
+length and can be determined by the sample-to-detector distance, $`Z`$, the neutron wavelength, $`\lambda`$, and the 
+period of the Moire pattern, $`P_D`$. 
 
-## README
+<img src="/data/images/GratingInterferometer.png" alt="drawing" width="60%"/>
 
-Each repository will contain a plain-text [README file][wk-rdm],
-preferably formatted using [GitHub-flavored Markdown][gh-mdn] and
-named `README.md` (this file) or `README`.
+When a sample is placed in the beam path, small-angle scattering due to structural features at the probed 
+autocorrelation length, $`\xi`$, result in a loss in visibility of the sinusoidal Moire pattern at the detector. This loss in visibility can be calculated from the mean, $`(A)`$, and amplitude, $`(B)`$, of the Moire pattern from a sample measurement and open beam measurement. The mean values can be used to first reconstruct a normalized transmission image, $`H_0`$:
 
-Per the [GitHub ROB][gh-rob] and [NIST Suborder 1801.02][nist-s-1801-02],
-your README should contain:
+```math
+H_0=\frac{A_{sample}}{A_{open}}
+```
 
-1. Software or Data description
-   - Statements of purpose and maturity
-   - Description of the repository contents
-   - Technical installation instructions, including operating
-     system or software dependencies
-1. Contact information
-   - PI name, NIST OU, Division, and Group names
-   - Contact email address at NIST
-   - Details of mailing lists, chatrooms, and discussion forums,
-     where applicable
-1. Related Material
-   - URL for associated project on the NIST website or other Department
-     of Commerce page, if available
-   - References to user guides if stored outside of GitHub
-1. Directions on appropriate citation with example text
-1. References to any included non-public domain software modules,
-   and additional license language if needed, *e.g.* [BSD][li-bsd],
-   [GPL][li-gpl], or [MIT][li-mit]
+Similarly, the amplitude values can be used to reconstruct a normalized amplitude image, $`H_1`$:
 
-The more detailed your README, the more likely our colleagues
-around the world are to find it through a Web search. For general
-advice on writing a helpful README, please review
-[*Making Readmes Readable*][18f-guide] from 18F and Cornell's
-[*Guide to Writing README-style Metadata*][cornell-meta].
+```math
+H_1=\frac{B_{sample}}{B_{open}}
+```
 
-## LICENSE
+Finally, $`H_0`$ and $`H_1`$ can be used to reconstruct the loss in visibility, 
+$`\frac{V_s}{V_o}`$:
 
-Each repository will contain a plain-text file named `LICENSE.md`
-or `LICENSE` that is phrased in compliance with the Public Access
-to NIST Research [*Copyright, Fair Use, and Licensing Statement
-for SRD, Data, and Software*][nist-open], which provides
-up-to-date official language for each category in a blue box.
+```math
+\frac{V_s}{V_o} = \frac{H_1}{H_0}
+```
 
-- The version of [LICENSE.md](LICENSE.md) included in this
-  repository is approved for use.
-- Updated language on the [Licensing Statement][nist-open] page
-  supersedes the copy in this repository. You may transcribe the
-  language from the appropriate "blue box" on that page into your
-  README.
+This dark field intensity, $`DF`$, is related to the and structural features in the sample by:
 
-If your repository includes any software or data that is licensed
-by a third party, create a separate file for third-party licenses
-(`THIRD_PARTY_LICENSES.md` is recommended) and include copyright
-and licensing statements in compliance with the conditions of
-those licenses.
+```math
+DF(\xi) = -ln(\frac{V_s}{V_o}) = -\lambda^2 t(G(\xi)-G_0)
+```
 
-## CODEOWNERS
+where $`t`$ is the sample thickness and $`G`$ is the projection function of the autocorrelation function, which is 
+related to the scattering cross-section, $`I(q)`$, through the following Hankel transformation:
 
-This template repository includes a file named
-[CODEOWNERS](CODEOWNERS), which visitors can view to discover
-which GitHub users are "in charge" of the repository. More
-crucially, GitHub uses it to assign reviewers on pull requests.
-GitHub documents the file (and how to write one) [here][gh-cdo].
+```math
+G(\xi) = \frac{1}{2\pi}\int^\infty_0 J_0(q\xi)I(q)qdq
+```
 
-***Please update that file*** to point to your own account or
-team, so that the [Open-Source Team][gh-ost] doesn't get spammed
-with spurious review requests. *Thanks!*
+```math
+G_0 = \frac{1}{2\pi}\int^\infty_0 I(q)qdq
+```
 
-## CODEMETA
+where $`J_0`$ is the zeroth order Bessel function of the first kind and $`q`$ is the scattering vector. The scattering 
+cross-section is defined as:
+```math
+I(q) = \phi\Delta\rho^2P(q)S(q)
+```
+where $`\phi`$ is the volume fraction of scatterers, $`\Delta\rho^2`$ is the contrast, or difference in scattering 
+length density squared between the scatterer and background/solvent, $`P(q)`$ is the form factor which includes information about the size and shape of the scatterer, and $`S(q)`$ is the structure factor which includes information about the correlations or interactions between scatterers. 
 
-Project metadata is captured in `CODEMETA.yaml`, used by the NIST
-Software Portal to sort your work under the appropriate thematic
-homepage. ***Please update this file*** with the appropriate
-"theme" and "category" for your code/data/software. The Tier 1
-themes are:
+## Installation
 
-- [Advanced communications](https://www.nist.gov/advanced-communications)
-- [Bioscience](https://www.nist.gov/bioscience)
-- [Buildings and Construction](https://www.nist.gov/buildings-construction)
-- [Chemistry](https://www.nist.gov/chemistry)
-- [Electronics](https://www.nist.gov/electronics)
-- [Energy](https://www.nist.gov/energy)
-- [Environment](https://www.nist.gov/environment)
-- [Fire](https://www.nist.gov/fire)
-- [Forensic Science](https://www.nist.gov/forensic-science)
-- [Health](https://www.nist.gov/health)
-- [Information Technology](https://www.nist.gov/information-technology)
-- [Infrastructure](https://www.nist.gov/infrastructure)
-- [Manufacturing](https://www.nist.gov/manufacturing)
-- [Materials](https://www.nist.gov/materials)
-- [Mathematics and Statistics](https://www.nist.gov/mathematics-statistics)
-- [Metrology](https://www.nist.gov/metrology)
-- [Nanotechnology](https://www.nist.gov/nanotechnology)
-- [Neutron research](https://www.nist.gov/neutron-research)
-- [Performance excellence](https://www.nist.gov/performance-excellence)
-- [Physics](https://www.nist.gov/physics)
-- [Public safety](https://www.nist.gov/public-safety)
-- [Resilience](https://www.nist.gov/resilience)
-- [Standards](https://www.nist.gov/standards)
-- [Transportation](https://www.nist.gov/transportation)
+A Python installation is required to utilize `correlogram-tools`. If you do not yet have Python installed on your 
+system, you can do so by installing a package manager such as 
+[Anaconda](https://www.anaconda.com/products/individual#Downloads). Create a new Python environment. If using conda,
+one can use the following command to create and activate the environment:
+```
+conda create -n correlograms python=3.10
+conda activate correlograms
+```
+Navigate to the `correlogram-tools` directory and install the package and required dependencies with:
+```
+pip install .
+```
 
----
+## Usage
 
-[usnistgov/opensource-repo][gh-osr] is developed and maintained
-by the [opensource-team][gh-ost], principally:
+Read more about different ways to use `correlogram-tools` in the [documentation](./docs/index.md).
 
-- Gretchen Greene, @GRG2
-- Yannick Congo, @faical-yannick-congo
-- Trevor Keller, @tkphd
+## Contributors
 
-Please reach out with questions and comments.
+- Caitlyn Wolf, NIST Center for Neutron Research, NIST, caitlyn.wolf@nist.gov 
+- Paul Kienzle, NIST Center for Neutron Research, NIST
+- Youngju Kim, Physical Measurement Laboratory, NIST
+- Pushkar Sathe, Information Technology Laboratory, NIST
+- Peter Bajcsy, Information Technology Laboratory, NIST
+- Daniel Hussey, Physical Measurement Laboratory, NIST
+- Katie Weigandt, NIST Center for Neutron Research, NIST
 
-<!-- References -->
-
-[18f-guide]: https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-readable.md
-[cornell-meta]: https://data.research.cornell.edu/content/readme
-[gh-cdo]: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
-[gh-mdn]: https://github.github.com/gfm/
-[gh-nst]: https://github.com/usnistgov
-[gh-odi]: https://odiwiki.nist.gov/ODI/GitHub.html
-[gh-osr]: https://github.com/usnistgov/opensource-repo/
-[gh-ost]: https://github.com/orgs/usnistgov/teams/opensource-team
-[gh-rob]: https://odiwiki.nist.gov/pub/ODI/GitHub/GHROB.pdf
-[gh-tpl]: https://github.com/usnistgov/carpentries-development/discussions/3
-[li-bsd]: https://opensource.org/licenses/bsd-license
-[li-gpl]: https://opensource.org/licenses/gpl-license
-[li-mit]: https://opensource.org/licenses/mit-license
-[nist-code]: https://code.nist.gov
-[nist-disclaimer]: https://www.nist.gov/open/license
-[nist-s-1801-02]: https://inet.nist.gov/adlp/directives/review-data-intended-publication
-[nist-open]: https://www.nist.gov/open/license#software
-[wk-rdm]: https://en.wikipedia.org/wiki/README
+Please contact Caitlyn Wolf at the email above with any questions or comments regarding this code.
