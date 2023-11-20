@@ -40,9 +40,9 @@ setup(
         "bumps == 0.8.0",
         "periodictable == 1.6.0",
         "sasmodels == 1.0.5",
-        "ipykernel == 6.4.1",
-        "jupyter == 1.0.0",
-        "sphinx",
+        # "ipykernel == 6.4.1",
+        # "jupyter == 1.0.0",
+        # "sphinx",
     ],
     python_requires='>= 3.10',
     classifiers=[
