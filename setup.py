@@ -13,10 +13,10 @@ def read_version():
     return str(version)
 
 setup(
-    name='correlogram-tools',
+    name='correlogram_tools',
     version=read_version(),
     description='Generate correlograms and simulated raw and reconstructed images for dark field interferometry.',
-    url='https://gitlab.nist.gov/gitlab/infer/correlogram-tools/-/tree/publication?ref_type=heads',
+    url='https://github.com/usnistgov/correlogram_tools',
     author='Caitlyn Wolf',
     author_email='caitlyn.wolf@nist.gov',
     packages=find_packages(include=["correlogram_tools", "correlogram_tools.*"]),
