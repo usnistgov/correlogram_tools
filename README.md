@@ -95,6 +95,7 @@ Read more about different ways to use `correlogram-tools` in the [documentation]
 - Paul Kienzle, NIST Center for Neutron Research, NIST
 - Youngju Kim, Physical Measurement Laboratory, NIST
 - Pushkar Sathe, Information Technology Laboratory, NIST
+- M. Cyrus Daugherty, Physical Measurement Laboratory, NIST
 - Peter Bajcsy, Information Technology Laboratory, NIST
 - Daniel Hussey, Physical Measurement Laboratory, NIST
 - Katie Weigandt, NIST Center for Neutron Research, NIST
